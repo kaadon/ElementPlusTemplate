@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import routes from 'virtual:generated-pages'
+import { routes } from 'vue-router/auto-routes'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { useHead } from '@vueuse/head';
 
@@ -12,7 +12,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const isAuthenticated = userStore.isLoggedIn; // 判断用户是否登录
-
+console.log(to.meta)
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login'); // 未登录则跳转到登录页
   } else {
